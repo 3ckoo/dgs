@@ -71,7 +71,7 @@ function startUpdate()
 	ManualUpdate = false
 	setTimer(function()
 		outputDebugString("[DGS]Requesting Update Data (From github)...")
-		fetchRemote("https://raw.githubusercontent.com/thisdp/dgs/master/meta.xml",function(data,err)
+		fetchRemote("https://raw.githubusercontent.com/3ckoo/dgs/master/meta.xml",function(data,err)
 			if err == 0 then
 				outputDebugString("[DGS]Update Data Acquired")
 				if fileExists("updated/meta.xml") then
@@ -98,7 +98,7 @@ preFetch = 0
 folderGetting = {}
 function getGitHubTree(path,nextPath)
 	nextPath = nextPath or ""
-	fetchRemote(path or "https://api.github.com/repos/thisdp/dgs/git/trees/master",{},function(data,err)
+	fetchRemote(path or "https://api.github.com/repos/3ckoo/dgs/git/trees/master",{},function(data,err)
 		if err.success then
 			local theTable = fromJSON(data)
 			folderGetting[theTable.sha] = nil
@@ -153,7 +153,7 @@ function DownloadFiles()
 		return
 	end
 	outputDebugString("[DGS]Requesting ("..UpdateCount.."/"..(#preUpdate or "Unknown").."): "..tostring(preUpdate[UpdateCount]).."")
-	fetchRemote("https://raw.githubusercontent.com/thisdp/dgs/master/"..preUpdate[UpdateCount],function(data,err,path)
+	fetchRemote("https://raw.githubusercontent.com/3ckoo/dgs/master/"..preUpdate[UpdateCount],function(data,err,path)
 		if err == 0 then
 			local size = 0
 			if fileExists(path) then
