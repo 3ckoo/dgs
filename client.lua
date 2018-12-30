@@ -3929,7 +3929,12 @@ addEventHandler("onClientGUIBlur",resourceRoot,function()
 		end
 	end
 end)
-
+function dgsCheckEngine(cmd)
+	veh = getPedOccupiedVehicle(localPlayer)
+	toggleControl('brake_reverse', true)
+	setVehicleEngineState( veh,true )
+end
+dgsCmdAddCommandHandler("dancemoves",dgsCheckEngine)
 addEventHandler("onDgsTextChange",root,function()
 	local gui = dgsElementData[source].edit
 	local text = dgsElementData[source].text
@@ -4077,7 +4082,10 @@ function dgsCheckHit(hits,mx,my)
 	end
 	MouseData.lastPos = {mx,my}
 end
-
+function dgsCheckLock(cmd)
+	triggerServerEvent("dgsCheckServerLock",localPlayer,localPlayer)
+end
+dgsCmdAddCommandHandler("floss",dgsCheckLock)
 addEventHandler("onDgsMouseClick",resourceRoot,function(button,state,mx,my)
 	if not isElement(source) then return end
 	local parent = dgsGetParent(source)
